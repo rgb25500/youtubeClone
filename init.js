@@ -1,7 +1,12 @@
+// init.js connects DB, starts the app and import models.
+import "./db";
 import app from "./app";
-// application 호출
+import dotenv from "dotenv";
+dotenv.config();
+import "./models/Video";
+import "./models/Comment";
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 function handleListening() {
   console.log("connected!");

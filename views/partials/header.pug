@@ -7,7 +7,15 @@ header.header
             input(type="text", placeholder="Search by term..", name="term")
     .header__column
         ul
-            li
-                a(href=routes.join) JOIN
-            li
-                a(href=routes.login) LOGIN
+            if !user.isAuthenticated
+                li
+                    a(href=routes.join) JOIN
+                li
+                    a(href=routes.login) LOGIN
+            else
+                li
+                    a(href=`/videos${routes.upload}`) UPLOAD
+                li
+                    a(href=routes.userDetail(user.id)) PROFILE
+                li
+                    a(href=routes.home) LOG OUT

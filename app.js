@@ -1,3 +1,4 @@
+// app.js is only express configuration.
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
@@ -9,7 +10,6 @@ import videoRouter from "./routers/videoRouter";
 import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
 
-// app.js is only express configuration.
 const app = express();
 
 app.set("view engine", "pug");

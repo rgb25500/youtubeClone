@@ -1,13 +1,26 @@
-export const home = (req, res) => res.render("home", { pageTitle: "home" });
+import routes from "../routes";
+
+export const home = (req, res) =>
+  res.render("home", { pageTitle: "HOME", videos });
 export const search = (req, res) => {
   // console.log(req.query.term);
   // const searchingBy = req.qeury.term;
   const {
     query: { term: searchingBy },
   } = req;
-  res.render("search", { pageTitle: search, searchingBy });
+  res.render("search", { pageTitle: "SEARCH", searchingBy, videos });
 };
-export const upload = (req, res) => res.render("upload");
+
+// UPLOAD
+export const getUpload = (req, res) => {
+  res.render("upload", { pageTitle: "UPLOAD" });
+};
+export const postUpload = (req, res) => {
+  const {
+    body: { file, title, description },
+  } = req;
+  res.redirect(routes.videoDetail(12345));
+};
 export const videoDetail = (req, res) => res.render("videoDetail");
 export const editVideo = (req, res) => res.render("editVideo");
 export const deleteVideo = (req, res) => res.render("deleteVideo");
