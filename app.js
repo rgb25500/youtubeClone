@@ -14,8 +14,8 @@ const app = express();
 
 app.set("view engine", "pug");
 // app.set("views", "/dist")  디폴트 경로 변경
+app.use("/uploads", express.static("uploads"));
 
-// middleware
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
