@@ -1,21 +1,33 @@
 header.header
-    .header__column
-        a(href=routes.home)
-            i.fab.fa-youtube
-    .header__column
-        form(action=routes.search, method="get")
-            input(type="text", placeholder="Search by term..", name="term")
-    .header__column
-        ul
-            if !user.isAuthenticated
-                li
-                    a(href=routes.join) JOIN
-                li
-                    a(href=routes.login) LOGIN
-            else
-                li
-                    a(href=`/videos${routes.upload}`) UPLOAD
-                li
-                    a(href=routes.userDetail(user.id)) PROFILE
-                li
-                    a(href=routes.home) LOG OUT
+    .header__wrapper
+        .header__column
+            a(href=routes.home)
+                i.fab.fa-youtube
+                    span.home WeTube
+        .header__column
+            form(action=routes.search, method="get", id="form1")
+                input(type="text", placeholder="Search by term..", name="term") 
+                button(type="submit", form="form1")
+                    i.fas.fa-search
+        .header__column
+            ul
+                if !loggedUser
+                    li
+                        a(href=routes.login)
+                            i.fas.fa-upload
+                    li
+                        a(href=routes.login)
+                            i.fas.fa-user
+                    li
+                        a(href=routes.join)
+                            i.fas.fa-user-plus
+                else
+                    li
+                        a(href=`/videos${routes.upload}`)
+                            i.fas.fa-upload
+                    li
+                        a(href=routes.me) 
+                            i.fas.fa-id-badge
+                    li
+                        a(href=routes.logout)
+                            i.fas.fa-sign-out-alt
