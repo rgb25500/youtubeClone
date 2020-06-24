@@ -142,7 +142,12 @@ export const logout = (req, res) => {
 
 export const getMe = async (req, res) => {
   // 방금 로그인한 사용자를 전달.
-  res.render("userDetail", { pageTitle: "USER DETAIL", user: req.user });
+  try {
+    const user = await User.findById(req.user.id).populate("videos");
+    res.render("userDetail", { pageTitle: "USER DETAIL", user });
+  } catch (error) {
+    res.redierct(routes.home);
+  }
 };
 
 export const userDetail = async (req, res) => {
@@ -150,7 +155,8 @@ export const userDetail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("videos");
+    console.log(user);
     res.render("userDetail", { pageTitle: "USER DETAIL", user });
   } catch (error) {
     res.redirect(routes.home);

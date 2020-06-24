@@ -60,7 +60,7 @@ export const videoDetail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const video = await Video.findById(id);
+    const video = await Video.findById(id).populate("creator");
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     console.log(error);
@@ -69,6 +69,23 @@ export const videoDetail = async (req, res) => {
 };
 
 export const getEditVideo = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    if (String(video.creator) !== req.user.id) {
+      // console.log("타입비교", typeof video.creator, typeof req.user.id);  => 객체, 문자열
+      throw Error();
+    } else {
+      res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+    }
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
+
+export const postEditVideo = async (req, res) => {
   const {
     params: { id },
   } = req;
@@ -83,14 +100,17 @@ export const getEditVideo = async (req, res) => {
   }
 };
 
-export const postEditVideo = (req, res) => {};
-
 export const deleteVideo = async (req, res) => {
   const {
     params: { id },
   } = req;
   try {
-    await Video.findOneAndRemove({ _id: id });
+    const video = await Video.findById(id);
+    if (String(video.creator) !== req.user.id) {
+      throw Error();
+    } else {
+      await Video.findOneAndRemove({ _id: id });
+    }
   } catch (error) {
     res.redirect(routes.home);
   }

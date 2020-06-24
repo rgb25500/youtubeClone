@@ -2,6 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  .video__player {
+    margin-bottom: 15px;
+  }
+  .video__author {
+    a {
+      margin-left: 5px;
+      color: #3498db;
+    }
+  }
   .video__info {
     width: 100%;
     max-width: 850px;
