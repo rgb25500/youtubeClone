@@ -1,0 +1,64 @@
+extends layouts/main
+include mixins/videoPlayer
+
+block content
+    .video-detail__container
+        +videoPlayer({
+            src: video.fileUrl
+        })
+        .video__info
+            if loggedUser && (video.creator.id === loggedUser.id)
+                a(href=routes.editVideo(video.id)) 
+                    button Edit Video
+            h5.video__title=video.title
+            span.video__views=video.views 
+                span.video__views-text views
+            span.video__date=video.createdAt
+            .video__author
+                a(href=routes.userDetail(video.creator.id))
+                    img.u-avatar#videoCreatorAvatar(src=video.creator.avatarUrl)
+                .video__creatorRightBlock
+                    .video__author-name
+                        a#creatorName(href=routes.userDetail(video.creator.id))=video.creator.name
+                    p.video__description=video.description
+            .video__line
+        .video__comments
+            if video.comments.length === 1
+                span.video__comment-number 
+                    span#jsCommentNumber 1 
+                    | comment
+            else
+                span.video__comment-number 
+                    span#jsCommentNumber #{video.comments.length} 
+                    | comments
+            form.add__comment#jsAddComment
+                input(type="text", placeholder="Add a comment")
+            ul.video__comments-list#jsCommentList
+                each comment in video.comments.reverse()
+                    li
+                        a(href=routes.userDetail(comment._id))
+                            //-span#jsCommentId=comment._id
+                            img#commentAvatar(src=comment.avatarUrl)
+                        div#jsCommentContent
+                            div
+                                a(href=routes.userDetail(comment._id))
+                                    span#commentCreator=comment.name 
+                                //- span.commentCreatedAt=comment.createdAt 
+                                span#jsCommentCreatedAt #{new Date(comment.createdAt).toISOString().replace("T", " ").slice(0,16)}
+                                //- span#jsCommentCreatedAt #{new Date(comment.createdAt).toLocaleString('ko-KR', { timeZone: 'UTC' })}
+                            span#commentText=comment.text
+                            form.jsEditText.showing
+                                input(type="text").editInput
+                        if loggedUser && loggedUser.id === comment.creator.toString()
+                            div.JsEllipsis
+                                button(type="button").jsEllipsisBtn 
+                                    i.fas.fa-ellipsis-v.eliminatingClick
+                                div.editmenu.showing
+                                    form.jsEditForm
+                                        button(type="submit").elliBtn#jsEditBtn
+                                            i.fas.fa-pencil-alt 
+                                            span.medu--edit EDIT
+                                    form.jsCommentDeleteForm
+                                        button(type="submit").elliBtn#jsDeleteBtn
+                                            i.fas.fa-trash 
+                                            span.menu--delete DELETE

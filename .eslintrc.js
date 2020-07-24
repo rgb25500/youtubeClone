@@ -26,5 +26,21 @@ module.exports = {
     "no-unused-vars": "off",
     "comma-dangle": "off",
     "no-else-return": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        VariableDeclarator: {
+          array: false,
+          object: true,
+        },
+        AssignmentExpression: {
+          array: false,
+          object: false,
+        },
+      },
+      {
+        enforceForRenamedProperties: false,
+      },
+    ],
   },
 };
