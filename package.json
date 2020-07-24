@@ -66,7 +66,8 @@
     "eslint-plugin-prettier": "^3.1.4",
     "heroku": "^7.42.5",
     "nodemon": "^2.0.4",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "shx": "^0.3.2"
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static' ",
