@@ -17,7 +17,7 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: `http://localhost:5000${routes.githubCallback}`,
+      callbackURL: `https://git.heroku.com/sheltered-spire-39535${routes.githubCallback}`,
     },
     githubLoginCallback
   )
@@ -28,7 +28,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-      callbackURL: `http://localhost:5000${routes.googleCallback}`,
+      callbackURL: `https://git.heroku.com/sheltered-spire-39535${routes.googleCallback}`,
     },
     googleLoginCallback
   )
@@ -39,7 +39,7 @@ passport.use(
     {
       clientID: process.env.KAKAO_ID,
       clientSecret: "",
-      callbackURL: `http://localhost:5000${routes.kakaoCallback}`,
+      callbackURL: `https://git.heroku.com/sheltered-spire-39535${routes.kakaoCallback}`,
     },
     kakaoLoginCallback
   )

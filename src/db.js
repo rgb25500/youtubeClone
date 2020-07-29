@@ -14,7 +14,6 @@ mongoose
   )
   .then(() => {
     console.log("connection success");
-    console.log(typeof process.env.MONGO_URL_PROD);
   })
   .catch((err) => {
     console.log("err", err);
