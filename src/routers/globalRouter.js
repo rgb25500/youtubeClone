@@ -42,7 +42,10 @@ globalRouter.get(routes.gitHub, githubLogin);
 
 globalRouter.get(
   routes.githubCallback,
-  passport.authenticate("github", { failureRedirect: "/login" }),
+  passport.authenticate("github", {
+    successFlash: "Welcome",
+    failureRedirect: "/login",
+  }),
   postGithubLogIn
 );
 
@@ -51,7 +54,10 @@ globalRouter.get(routes.google, googleLogin);
 
 globalRouter.get(
   routes.googleCallback,
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  passport.authenticate("google", {
+    successFlash: "Welcome",
+    failureRedirect: "/login",
+  }),
   postGoogleLogIn
 );
 
@@ -60,7 +66,10 @@ globalRouter.get(routes.kakao, kakaoLogin);
 
 globalRouter.get(
   routes.kakaoCallback,
-  passport.authenticate("kakao", { failureRedirect: "/login" }),
+  passport.authenticate("kakao", {
+    successFlash: "Welcome",
+    failureRedirect: "/login",
+  }),
   postKakaoLogIn
 );
 

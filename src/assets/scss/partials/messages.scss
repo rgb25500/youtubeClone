@@ -1,0 +1,42 @@
+@keyframes flashAnimation {
+  0% {
+    transform: translateY(-70px);
+  }
+  10% {
+    transform: translateY(0px);
+  }
+  90% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-70px);
+  }
+}
+
+.flash-message_container {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  z-index: 9;
+  animation: flashAnimation 5s ease-in-out forwards;
+  //- forwards : animation의 마지막 상태 (여기서는 100% 블록상태)를 유지
+  &.error {
+    //-container 하위의 error 클래스를 찾음
+    background-color: #e55039;
+  }
+  &.success {
+    background-color: #fdcb6e;
+  }
+  &.info {
+    background-color: #82ccdd;
+  }
+  .flash-message_text {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}

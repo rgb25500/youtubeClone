@@ -115,6 +115,7 @@ export const postEditVideo = async (req, res) => {
     //$set: { text: editText }
     res.redirect(routes.videoDetail(video.id));
   } catch (error) {
+    req.flash("error", "Can't edit video");
     res.redirect(routes.home);
   }
 };

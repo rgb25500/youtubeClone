@@ -52,6 +52,7 @@ export const editComment = async (req, res) => {
     );
     console.log(comment);
   } catch (error) {
+    req.flash("error", "Can't edit comment");
     console.log(error);
   }
 };

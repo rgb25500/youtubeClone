@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import passport from "passport";
 import session from "express-session";
 import path from "path";
+import flash from "express-flash";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
@@ -43,6 +44,9 @@ app.use(
     store: new CokieStore({ mongooseConnection: mongoose.connection }),
   })
 );
+// local message를 사용하는 법.
+app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
 
