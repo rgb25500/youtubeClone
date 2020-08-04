@@ -1,16 +1,19 @@
 mixin commentBlock(comment = {})
     .commentBlock
         a(href=routes.userDetail(comment.id))
-            img#commentAvatar(src=comment.avatarUrl)
+            if comment.avatarUrl === null || comment.avatarUrl === undefined || comment.avatarUrl === {}
+                .u-avatar
+            else
+                img#commentAvatar(src=comment.avatarUrl)
         div#jsCommentContent
             div
-                a(href=routes.userDetail(comment._id))
+                a(href=routes.userDetail(comment.id))
                     span#commentCreator=comment.name
                 span#jsCommentCreatedAt=comment.createdAt
             span#commentText=comment.text
             form.jsEditText.showing
                 input(type="text").editInput
-        if loggedUser && loggerUser.id === comment.creator.toString()
+        if loggedUser && (loggedUser._id === comment.creator.toString())
             .JsEllipsis
                 button(type="buton").jsEllipsisBtn
                     i.fas.fa-ellipsis-v.eliminatingClick

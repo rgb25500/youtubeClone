@@ -24,7 +24,6 @@ export const postAddComment = async (req, res) => {
       name: user.name,
       avatarUrl: user.avatarUrl,
     });
-    //console.log("new comment!!", newComment);
     video.comments.push(newComment.id);
     video.save();
   } catch (error) {

@@ -1,6 +1,7 @@
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
+import { s3 } from "../middlewares";
 
 // const AmazonS3URI = require('amazon-s3-uri')
 
@@ -28,6 +29,12 @@ export const postJoin = async (req, res, next) => {
       // user를 만들어서 등록시킴.
       const user = await User({ name, email });
       await User.register(user, password);
+      // avatar 기본 이미지
+      const defaultAvatar = await s3.getSignedUrl("getObject", {
+        Bucket: "youtubeclonebucket",
+        Key: "avatar/user.png",
+      });
+      await User.findOneAndUpdate({ name }, { avatarUrl: defaultAvatar });
       next();
     } catch (error) {
       console.log(error);
@@ -209,13 +216,14 @@ export const postEditProfile = async (req, res) => {
     body: { name, email },
     file,
   } = req;
-  console.log(req.body, req.file);
+  console.log("개인정보 업데이트", req.body, req.file);
   try {
-    await User.findByIdAndUpdate(req.user.id, {
+    const test = await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
       avatarUrl: file ? file.location : req.user.avatarUrl,
     });
+    console.log("업데이트가 잘 되었는가.", test);
     req.flash("success", "Profile updated");
     res.redirect(routes.me);
   } catch (error) {
