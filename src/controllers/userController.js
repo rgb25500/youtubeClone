@@ -216,14 +216,19 @@ export const postEditProfile = async (req, res) => {
     body: { name, email },
     file,
   } = req;
-  console.log("개인정보 업데이트", req.body, req.file);
   try {
-    const test = await User.findByIdAndUpdate(req.user.id, {
+    await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
       avatarUrl: file ? file.location : req.user.avatarUrl,
     });
-    console.log("업데이트가 잘 되었는가.", test);
+    const test = await Comment.findOneAndUpdate(
+      { email },
+      {
+        avatarUrl: file ? file.location : req.user.avatarUrl,
+      }
+    );
+    console.log("댓글 작성자 정보도 수정!", test);
     req.flash("success", "Profile updated");
     res.redirect(routes.me);
   } catch (error) {
