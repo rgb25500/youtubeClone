@@ -42,6 +42,8 @@ const addComment = (comment) => {
   // commentList.prepend(li);
   // increaseNumber();
   div.innerHTML = "Refresh the Page!";
+  div.style.fontSize = 25;
+  div.style.marginBottom = 10;
   commentList.prepend(div);
   increaseNumber();
 };
