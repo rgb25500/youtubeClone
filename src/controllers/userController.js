@@ -222,13 +222,13 @@ export const postEditProfile = async (req, res) => {
       email,
       avatarUrl: file ? file.location : req.user.avatarUrl,
     });
-    const test = await Comment.findOneAndUpdate(
-      { email },
-      {
-        avatarUrl: file ? file.location : req.user.avatarUrl,
-      }
-    );
-    console.log("댓글 작성자 정보도 수정!", test);
+    // const test = await Comment.findOneAndUpdate(
+    //   { email },
+    //   {
+    //     avatarUrl: file ? file.location : req.user.avatarUrl,
+    //   }
+    // );
+    // console.log("댓글 작성자 정보도 수정!", test);
     req.flash("success", "Profile updated");
     res.redirect(routes.me);
   } catch (error) {

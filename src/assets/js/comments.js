@@ -28,6 +28,15 @@ const addComment = (comment) => {
   // comment creator, createdAt, deleteBtn 값도 가져와서 추가해야 함.
   const li = document.createElement("li");
   const div = document.createElement("div");
+  // column 1 ( avatarUrl )
+  const a = document.createElement("a");
+  const img = document.createElement("img");
+  // column 2
+  const div2 = document.createElement("div");
+  const a2 = document.createElement("a");
+  const a2_span2 = document.createElement("span");
+  const span2 = document.createElement("span");
+
   div.innerHTML = comment;
   li.appendChild(div);
   commentList.prepend(li);
