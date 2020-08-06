@@ -29,17 +29,20 @@ const addComment = (comment) => {
   const li = document.createElement("li");
   const div = document.createElement("div");
   // column 1 ( avatarUrl )
-  const a = document.createElement("a");
-  const img = document.createElement("img");
-  // column 2
-  const div2 = document.createElement("div");
-  const a2 = document.createElement("a");
-  const a2_span2 = document.createElement("span");
-  const span2 = document.createElement("span");
-
-  div.innerHTML = comment;
-  li.appendChild(div);
-  commentList.prepend(li);
+  // const a = document.createElement("a");
+  // const img = document.createElement("img");
+  // column 2 ( username, text )
+  // const div2 = document.createElement("div");
+  // const a2 = document.createElement("a");
+  // const a2_span2 = document.createElement("span");
+  // const span2 = document.createElement("span");
+  // column 3 ( 아직 안함.. )
+  // div.innerHTML = comment;
+  // li.appendChild(div);
+  // commentList.prepend(li);
+  // increaseNumber();
+  div.innerHTML = "Refresh the Page!";
+  commentList.prepend(div);
   increaseNumber();
 };
 
