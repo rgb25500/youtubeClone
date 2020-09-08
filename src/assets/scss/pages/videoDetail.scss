@@ -74,6 +74,9 @@
     margin-top: 60px;
     .video__comment-number {
       font-size: 18px;
+      #jsCommentNumber {
+        margin-right: 5px;
+      }
     }
     .add__comment {
       margin-top: 25px;
@@ -112,6 +115,21 @@
               border-radius: 0;
               box-shadow: none;
               width: 100%;
+              animation: handleWidth;
+            }
+            @keyframes handleWidth {
+              0% {
+                width: 25%;
+              }
+              25% {
+                width: 50%;
+              }
+              50% {
+                width: 75%;
+              }
+              100% {
+                width: 100%;
+              }
             }
           }
           // jsEllipsis scss is not working, Go to main.scss page

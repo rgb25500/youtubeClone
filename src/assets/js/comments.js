@@ -24,26 +24,43 @@ const decreaseNumber = () => {
   commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) - 1;
 };
 
-const addComment = (comment) => {
+const addComment = (jsonData) => {
   // comment creator, createdAt, deleteBtn 값도 가져와서 추가해야 함.
+  // element.setAttribute("id", "myId");
+  // 현재 url 주소 가져와서 a 태그 수정.
   const li = document.createElement("li");
   const div = document.createElement("div");
+  div.classList.add("commentBlock");
   // column 1 ( avatarUrl )
-  // const a = document.createElement("a");
-  // const img = document.createElement("img");
-  // column 2 ( username, text )
-  // const div2 = document.createElement("div");
-  // const a2 = document.createElement("a");
-  // const a2_span2 = document.createElement("span");
-  // const span2 = document.createElement("span");
-  // column 3 ( 아직 안함.. )
-  // div.innerHTML = comment;
+  const a = document.createElement("a");
+  a.href = `/users/${jsonData.creator}`;
+  const img = document.createElement("img");
+  img.src = jsonData.avatarUrl;
+  img.setAttribute("id", "commentAvatar");
+  a.appendChild(img);
+  // column 2 ( username, cratedAt, commentText )
+  const div2 = document.createElement("div");
+  const div2_1 = document.createElement("div");
+  div2.setAttribute("id", "jsCommentContent");
+  // username, createdAt
+  const a2 = document.createElement("a");
+  const a2Span2 = document.createElement("span");
+  a2.href = `/users/${jsonData.creator}`;
+  a2Span2.innerHTML = jsonData.name;
+  a2.appendChild(a2Span2);
+  // CommentText
+  const span2 = document.createElement("span");
+  span2.setAttribute("id", "commentText");
+  span2.innerHTML = jsonData.text;
+  div2_1.appendChild(a2);
+  // div2_1.appendChild(a2Span2);
+  div2.appendChild(div2_1);
+  div2.appendChild(span2);
+  // column 3 ( maybe someday.. )
   // li.appendChild(div);
   // commentList.prepend(li);
-  // increaseNumber();
-  div.innerHTML = "Refresh the Page!";
-  div.style.fontSize = 25;
-  div.style.marginBottom = 10;
+  div.appendChild(a);
+  div.appendChild(div2);
   commentList.prepend(div);
   increaseNumber();
 };
@@ -57,8 +74,10 @@ const sendComment = async (comment) => {
       comment,
     },
   });
+  const jsonData = response.data;
+  console.log(jsonData);
   if (response.status === 200) {
-    addComment(comment);
+    addComment(jsonData);
   }
 };
 
