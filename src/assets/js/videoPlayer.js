@@ -88,15 +88,13 @@ const formatDate = (seconds) => {
 };
 
 function getCurrentTime() {
-  console.log("현재 비디오 시간 가져오기", currentTime);
   currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 }
 
 async function setTotalTime() {
-  // console.log(videoPlayer.duration);
   const blob = await fetch(videoPlayer.src).then((response) => response.blob());
   const duration = await getBlobDuration(blob);
-  console.log(duration);
+  // console.log(duration);
   const totalTimeString = formatDate(duration);
   totalTime.innerHTML = totalTimeString;
   setInterval(getCurrentTime, 1000);
