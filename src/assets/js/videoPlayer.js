@@ -88,6 +88,7 @@ const formatDate = (seconds) => {
 };
 
 function getCurrentTime() {
+  console.log("현재 비디오 시간 가져오기", currentTime);
   currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 }
 
