@@ -40,6 +40,7 @@ const addComment = (jsonData) => {
   a.appendChild(img);
   // column 2 ( username, cratedAt, commentText )
   const div2 = document.createElement("div");
+  // eslint-disable-next-line camelcase
   const div2_1 = document.createElement("div");
   div2.setAttribute("id", "jsCommentContent");
   // username, createdAt
