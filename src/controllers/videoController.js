@@ -69,7 +69,6 @@ export const videoDetail = async (req, res) => {
       .populate("creator")
       .populate("comments");
     // 댓글에 avatarUrl 가져오기.
-    // console.log("comments 확인하자", video);
     if (video.commments) {
       res.render("videoDetail", { pageTitle: video.title, video });
     } else {

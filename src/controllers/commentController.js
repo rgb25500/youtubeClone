@@ -9,7 +9,7 @@ export const postAddComment = async (req, res) => {
     body: { comment },
     user,
   } = req;
-  // console.log("avatar가 있는지!", req.user);
+
   try {
     const video = await Video.findById(id)
       .populate({

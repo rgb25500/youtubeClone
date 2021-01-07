@@ -57,7 +57,7 @@ const addComment = (jsonData) => {
   // div2_1.appendChild(a2Span2);
   div2.appendChild(div2_1);
   div2.appendChild(span2);
-  // column 3 ( maybe someday.. )
+  // column 3
   // li.appendChild(div);
   // commentList.prepend(li);
   div.appendChild(a);

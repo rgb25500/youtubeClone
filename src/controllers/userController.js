@@ -21,7 +21,7 @@ export const postJoin = async (req, res, next) => {
   } = req;
   if (password !== password2) {
     req.flash("error", "Passwords don't match");
-    // error, success, potato 변수명 아무거나 가능
+    // error, success 변수명 아무거나 가능
     res.status(400);
     res.render("join", { pageTitle: "JOIN" });
   } else {
@@ -175,7 +175,7 @@ export const logout = (req, res) => {
 // s3.getObject(params).createReadStream().pipe(file);
 
 export const getMe = async (req, res) => {
-  // AWS 에서 디폴트유저 이미지 가져오려는 삽질..
+  // AWS 에서 디폴트유저 이미지 가져오기
   // const params = { Bucket: "youtubeclonebucket/avatar", Key: "user.png" };
   // const test = __dirname; // C:\Users\김인영\Documents\youtubeClone\controllers
   // const directory = path.join(__dirname, ".."); // C:\Users\김인영\Documents\youtubeClone
